@@ -1,0 +1,13 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  hello:
+    build: ./microservice-hello
+    ports:
+      - "8080:8080"
+
+  goodbye:
+    build: ./microservice-goodbye
+    ports:
+      - "8081:8080"
