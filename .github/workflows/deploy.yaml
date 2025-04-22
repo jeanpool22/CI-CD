@@ -29,7 +29,7 @@ jobs:
         with:
           context: ./microservice-hello
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-hello:v1.0.0
+          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-hello:latest
 
       - name: Construir y publicar microservicio goodbye
         id: goodbye
@@ -37,4 +37,4 @@ jobs:
         with:
           context: ./microservice-goodbye
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-goodbye:v1.0.0
+          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-goodbye:latest
