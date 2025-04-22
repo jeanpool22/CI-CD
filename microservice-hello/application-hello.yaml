@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/jeanpool22/CI-CD'
     targetRevision: HEAD
-    path: helm/microservice-hello
+    path: helm/microservice-hello-chart
     helm:
       valueFiles:
         - values.yaml
