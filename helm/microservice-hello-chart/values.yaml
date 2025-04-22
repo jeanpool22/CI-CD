@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: jeandocker22/microservice-hello
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "v1.0.0"
 
 serviceAccount:
   create: true
