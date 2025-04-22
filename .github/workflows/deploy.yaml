@@ -39,21 +39,21 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/microservice-goodbye:latest
 
-  #desplegar:
-  #  name: Desplegar en Kubernetes
-  #  runs-on: ubuntu-latest
-  #  needs: construir
+  desplegar:
+    name: Desplegar en Kubernetes
+    runs-on: ubuntu-latest
+    needs: construir
 
-  #  steps:
-  #    - name: Clonar repositorio
-  #      uses: actions/checkout@v3
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
 
-  #    - name: Configurar acceso al clúster Kubernetes
-  #      run: |
-  #        mkdir -p $HOME/.kube
-  #        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+      - name: Configurar acceso al clúster Kubernetes
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
-  #    - name: Aplicar manifiestos Kubernetes
-  #      run: |
-  #        kubectl apply -f helm/microservice-hello/
-  #        kubectl apply -f helm/microservice-goodbye/
+      - name: Aplicar manifiestos Kubernetes
+        run: |
+          kubectl apply -f helm/microservice-hello/
+          kubectl apply -f helm/microservice-goodbye/
