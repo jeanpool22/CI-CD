@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: jeanpool122/ci-cd-goodbye  # Actualiza esto con tu usuario/organización
+  repository: jeandocker22/microservice-goodbye
   pullPolicy: IfNotPresent
   tag: "latest"
 
