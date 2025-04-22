@@ -39,27 +39,4 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/microservice-goodbye:latest
 
-  desplegar:
-    name: Desplegar en Kubernetes
-    runs-on: ubuntu-latest
-    needs: construir
-
-    steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v3
-
-      - name: Configurar acceso al clúster Kubernetes
-        run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
-
-      - name: Instalar Helm
-        uses: azure/setup-helm@v3
-
-      - name: Desplegar microservicio hello con Helm
-        run: |
-          helm upgrade --install hello-release helm/microservice-hello-chart/ --namespace default --create-namespace
-
-      - name: Desplegar microservicio goodbye con Helm
-        run: |
-          helm upgrade --install goodbye-release helm/microservice-goodbye-chart/ --namespace default --create-namespace
+  
