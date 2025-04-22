@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ci-cd-goodbye
+  repository: jeanpool122/ci-cd-goodbye  # Actualiza esto con tu usuario/organización
   pullPolicy: IfNotPresent
   tag: "latest"
 
@@ -60,4 +60,4 @@ tolerations: []
 affinity: {}
 podAnnotations: {}
 podLabels: {}
-imagePullSecrets: []
+imagePullSecrets: []  # Si usas un registro privado, añade el secreto aquí

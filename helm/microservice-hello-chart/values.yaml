@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ci-cd-hello
+  repository: jeanpool122/ci-cd-hello
   pullPolicy: IfNotPresent
   tag: "latest"
 
