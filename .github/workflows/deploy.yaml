@@ -23,20 +23,36 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Establecer versión con timestamp
+        id: version
+        run: echo "VERSION=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+
       - name: Construir y publicar microservicio hello
-        id: hello
         uses: docker/build-push-action@v4
         with:
           context: ./microservice-hello
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-hello:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-hello:${{ env.VERSION }}
 
       - name: Construir y publicar microservicio goodbye
-        id: goodbye
         uses: docker/build-push-action@v4
         with:
           context: ./microservice-goodbye
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-goodbye:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/microservice-goodbye:${{ env.VERSION }}
 
-  
+      - name: Actualizar values.yaml de hello
+        run: |
+          sed -i "s|tag: .*|tag: \"${VERSION}\"|" helm/microservice-hello-chart/values.yaml
+
+      - name: Actualizar values.yaml de goodbye
+        run: |
+          sed -i "s|tag: .*|tag: \"${VERSION}\"|" helm/microservice-goodbye-chart/values.yaml
+
+      - name: Hacer commit de los cambios en los charts
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add helm/microservice-hello-chart/values.yaml helm/microservice-goodbye-chart/values.yaml
+          git commit -m "Actualizar tags de imagen a $VERSION"
+          git push origin main
