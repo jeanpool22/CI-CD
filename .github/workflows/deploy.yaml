@@ -55,5 +55,5 @@ jobs:
 
       - name: Aplicar manifiestos Kubernetes
         run: |
-          kubectl apply -f helm/microservice-hello/
-          kubectl apply -f helm/microservice-goodbye/
+          kubectl apply -f helm/microservice-hello-chart/
+          kubectl apply -f helm/microservice-goodbye-chart/
