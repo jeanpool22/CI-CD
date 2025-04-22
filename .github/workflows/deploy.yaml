@@ -53,7 +53,13 @@ jobs:
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
-      - name: Aplicar manifiestos Kubernetes
+      - name: Instalar Helm
+        uses: azure/setup-helm@v3
+
+      - name: Desplegar microservicio hello con Helm
         run: |
-          kubectl apply -f helm/microservice-hello-chart/
-          kubectl apply -f helm/microservice-goodbye-chart/
+          helm upgrade --install hello-release helm/microservice-hello-chart/ --namespace default --create-namespace
+
+      - name: Desplegar microservicio goodbye con Helm
+        run: |
+          helm upgrade --install goodbye-release helm/microservice-goodbye-chart/ --namespace default --create-namespace
