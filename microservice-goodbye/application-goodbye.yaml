@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservice-goodbye
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/jeanpool22/CI-CD'
+    targetRevision: HEAD
+    path: helm/microservice-goodbye
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: microservice-goodbye
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
