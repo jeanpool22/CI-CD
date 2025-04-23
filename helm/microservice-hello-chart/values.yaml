@@ -10,6 +10,7 @@ serviceAccount:
 service:
   type: NodePort
   port: 8080
+  nodePort: 30082
 resources:
   limits:
     cpu: 500m
