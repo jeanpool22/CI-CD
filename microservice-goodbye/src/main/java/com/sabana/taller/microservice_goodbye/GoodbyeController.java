@@ -8,6 +8,6 @@ public class GoodbyeController {
 
     @GetMapping("/goodbye")
     public String sayGoodbye() {
-        return "Adiós a todos desde una nueva versión";
+        return "Adiós a todos desde una nueva versión 5";
     }
 }
