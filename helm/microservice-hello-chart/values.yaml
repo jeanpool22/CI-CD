@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: jeandocker22/microservice-hello
   pullPolicy: IfNotPresent
-  tag: "463c1f3"
+  tag: "dc9efd0"
 serviceAccount:
   create: true
   annotations: {}
