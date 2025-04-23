@@ -1,19 +1,15 @@
 replicaCount: 1
-
 image:
   repository: jeandocker22/microservice-hello
   pullPolicy: IfNotPresent
-  tag: "1"
-
+  tag: "463c1f3"
 serviceAccount:
   create: true
   annotations: {}
   name: ""
-
 service:
   type: ClusterIP
   port: 8080
-
 resources:
   limits:
     cpu: 500m
@@ -21,27 +17,23 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-
 livenessProbe:
   httpGet:
     path: /hello
     port: 8080
   initialDelaySeconds: 30
   periodSeconds: 10
-
 readinessProbe:
   httpGet:
     path: /hello
     port: 8080
   initialDelaySeconds: 30
   periodSeconds: 10
-
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-
 ingress:
   enabled: false
   className: ""
@@ -52,7 +44,6 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-
 podSecurityContext: {}
 securityContext: {}
 nodeSelector: {}
