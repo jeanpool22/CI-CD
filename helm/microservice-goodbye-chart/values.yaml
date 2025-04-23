@@ -2,15 +2,14 @@ replicaCount: 1
 image:
   repository: jeandocker22/microservice-goodbye
   pullPolicy: IfNotPresent
-  tag: "9f62fe5"
+  tag: "3113e2f"
 serviceAccount:
   create: true
   annotations: {}
   name: ""
 service:
-  type: NodePort
+  type: ClusterIP
   port: 8080
-  nodePort: 30081
 resources:
   limits:
     cpu: 500m
