@@ -23,19 +23,19 @@ jobs:
         id: variables
         run: echo "sha_corto=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Construir imagen: microservice-hello
+      - name: Construir imagen microservice-hello
         run: |
           docker build -t jeandocker22/microservice-hello:${{ steps.variables.outputs.sha_corto }} ./microservice-hello
 
-      - name: Subir imagen: microservice-hello
+      - name: Subir imagen microservice-hello
         run: |
           docker push jeandocker22/microservice-hello:${{ steps.variables.outputs.sha_corto }}
 
-      - name: Construir imagen: microservice-goodbye
+      - name: Construir imagen microservice-goodbye
         run: |
           docker build -t jeandocker22/microservice-goodbye:${{ steps.variables.outputs.sha_corto }} ./microservice-goodbye
 
-      - name: Subir imagen: microservice-goodbye
+      - name: Subir imagen microservice-goodbye
         run: |
           docker push jeandocker22/microservice-goodbye:${{ steps.variables.outputs.sha_corto }}
 
@@ -44,11 +44,11 @@ jobs:
           sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
           sudo chmod +x /usr/bin/yq
 
-      - name: Actualizar tag en values.yaml: hello
+      - name: Actualizar tag en values.yaml hello
         run: |
           yq -i '.image.tag = "${{ steps.variables.outputs.sha_corto }}"' helm/microservice-hello-chart/values.yaml
 
-      - name: Actualizar tag en values.yaml: goodbye
+      - name: Actualizar tag en values.yaml goodbye
         run: |
           yq -i '.image.tag = "${{ steps.variables.outputs.sha_corto }}"' helm/microservice-goodbye-chart/values.yaml
 
