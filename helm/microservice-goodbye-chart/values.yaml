@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: jeandocker22/microservice-goodbye
   pullPolicy: IfNotPresent
-  tag: "abae216"
+  tag: "7d67a4c"
 serviceAccount:
   create: true
   annotations: {}
